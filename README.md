@@ -2,13 +2,7 @@
 High-performance **TensorRT** inference benchmark with **multi-GPU scaling via NCCL**, CUDA streams, and optional FP16/INT8.
 Includes **Nsight Systems/Compute** profiling workflows and **cuBLAS/cuDNN** referential notes.
 
-## Highlights (what to put on resume)
-- Achieved **X–Y× lower p50/p99 latency** and **A–B× throughput** vs. PyTorch FP32 baseline on ResNet50 (1x/2x/4x GPUs).
-- Implemented **TensorRT engine builder** with **FP32/FP16/INT8** profiles and calibration.
-- Parallel **inference runners** using **per-GPU CUDA streams** and **pinned host memory** with **overlapped H2D/D2H**.
-- **Scale-out** using **NCCL** (data-parallel) with process-per-GPU architecture and shared, lock-free queues.
-- **Nsight Systems/Compute** guided optimizations (kernel occupancy, warp stall reasons, memory BW, tensor core utilization).
-- Clean Docker setup using NVIDIA's official TensorRT container.
+
 
 
 ## Project Layout
@@ -93,13 +87,5 @@ Edit `configs/engine_config.json`:
 ## Building Without Docker
 Set `TENSORRT_ROOT`, `CUDA_HOME`, and `NCCL_ROOT` and adjust `CMakeLists.txt` paths if needed.
 
-## Benchmark Methodology (to report numbers)
-- **Baseline:** PyTorch FP32 eager, same batch sizes and pre/post-processing.
-- **TRT FP32/FP16 (and INT8 if calibrated):** identical inputs, warmup 100 iters, measure 1000 iters.
-- Report **p50/p95/p99 latency**, **images/sec**, and **scaling efficiency** for 1/2/4 GPUs.
-- Provide env details: GPU model, driver, CUDA, TRT version, clock mode, power mode.
-
-## Safety Checks
-- Validate **numerical accuracy** vs. ONNXRuntime or PyTorch (top-1 diff < 0.5%).
 
 
